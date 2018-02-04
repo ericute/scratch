@@ -22,6 +22,9 @@
  * 
  * For example, given N = 18, the function should return 6, as explained above.
  * 
+ * Assume that:
+ *      N is an integer with range [1..2,147,483,647].
+ * 
  * @param {integer} N 
  */
 
