@@ -36,13 +36,10 @@ X ≤ Y.
 function solution(X, Y, D) {
     // write your code in JavaScript (Node.js 8.9.4)
     
-    let jumps = 0;
-    
-    while ( X < Y ) {
-        jumps++;
-        X = X + D;
+    if ((Y-X)%D == 0) {
+      return parseInt((Y-X)/D);
+    } else {
+      return parseInt(((Y-X)/D) + 1);
     }
-    
-    return jumps;
     
 }
