@@ -1,0 +1,104 @@
+/*
+
+A non-empty array A consisting of N integers is given. Array A represents numbers on a tape.
+
+Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
+
+The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
+
+In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
+
+For example, consider array A such that:
+
+  A[0] = 3
+  A[1] = 1
+  A[2] = 2
+  A[3] = 4
+  A[4] = 3
+We can split this tape in four places:
+
+P = 1, difference = |3 − 10| = 7 
+P = 2, difference = |4 − 9| = 5 
+P = 3, difference = |6 − 7| = 1 
+P = 4, difference = |10 − 3| = 7 
+Write a function:
+
+function solution(A);
+
+that, given a non-empty array A of N integers, returns the minimal difference that can be achieved.
+
+For example, given:
+
+  A[0] = 3
+  A[1] = 1
+  A[2] = 2
+  A[3] = 4
+  A[4] = 3
+the function should return 1, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [2..100,000];
+each element of array A is an integer within the range [−1,000..1,000].
+
+*/
+
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+function solution(A) {
+    // write your code in JavaScript (Node.js 8.9.4)
+    
+    if (A.length == 1) return Math.abs(A[0]);
+    if (A.length == 2) return Math.abs(A[0] - A[1]);
+    
+    let p = [];
+    
+    //console.log('Before reduce: ' + A);
+    
+    let total = A.reduce((a, b) => a + b, 0);
+    
+    //console.log('After reduce: ' + A);
+    
+    let increasingTotal = 0;
+    let reducedTotal = total;
+    
+    //let pElems = A.length - 1;
+    let pElemsCounter = 0;
+    
+    for (let i = 0; i < A.length; i++) {
+    
+        let temp = A[i];
+        
+        //console.log('temp: ' + temp);
+        
+        increasingTotal = increasingTotal + temp;
+        
+        reducedTotal = reducedTotal - temp;
+        
+        //console.log('increasingTotal: ' + increasingTotal);
+        //console.log('reducedTotal: ' + reducedTotal);
+        //console.log('for storage :' + Math.abs(increasingTotal - reducedTotal))
+        
+        if (pElemsCounter < A.length - 1) {
+            pElemsCounter++;
+            p.push(Math.abs(increasingTotal - reducedTotal));
+        }
+    }
+    
+    //console.log(p);
+    
+    p = p.sort((a, b) => {
+        return a - b;
+    });
+    
+    //console.log('here: ' + p);
+    
+    return p[0];
+}
+
+
+//[-10, -20, -30, -40, 100]

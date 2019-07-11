@@ -17,4 +17,5 @@ function solution(A) {
         if (!storage[i]) return i; 
     }
     
+    return 1;
 }
